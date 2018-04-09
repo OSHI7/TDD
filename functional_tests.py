@@ -1,35 +1,55 @@
 from selenium import webdriver
-# from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
-# binary = FirefoxBinary('C:\Program Files (x86)\Mozilla Firefox\firefox.exe')
+import unittest
 
-browser=webdriver.Firefox()
-# Josh has hearsd about a cool new online to-do app. She goes to check out its homepage
-browser.get('http://localhost:8000')
+class NewVisitorTest(unittest.TestCase):
 
-# He notices the page title and header mention to-do lists
-# assert 'Django' in browser.title
-# assert 'To-Do' in browser.title  # Original
-assert 'To-Do' in browser.title, "Browser title was "+ browser.title # Enhanced printout
+    def setUp(self):
+        self.browser=webdriver.Firefox()
 
-# He is invited to enter a to-do item straight away
+    def tearDown(self):
+        self.browser.quit()
 
-# He types "Buy peackcok feathers" into a text box (Josh's hobby is typing fly-fishing lures)
+    def test_can_start_a_list_and_retrieve_it_later(self):
+         # Josh has hearsd about a cool new online to-do app. She goes to check out its homepage
+        self.browser.get('http://localhost:8000')
 
-# When he hits enter, the page updates, and now the page lists
-# 1: Buy peackck feathers" as an item in a to-do list
+        # He notices the page title and header mention to-do lists
+        # assert 'Django' in browser.title
+        # assert 'To-Do' in browser.title  # Original
+        # assert 'To-Do' in browser.title, "Browser title was "+ browser.title # Enhanced printout
+        self.assertIn('ToDo', self.browser.title)
+        self.fail('finish the test')
 
-# There is still a text box inviting her to add another item.  She enters
-# "Use peacock feathers to make a fly:" (JOsh is very methodical)
+        # He is invited to enter a to-do item straight away
 
-# The page updates again, and now shows both items on his list
+        # He types "Buy peackcok feathers" into a text box (Josh's hobby is typing fly-fishing lures)
 
-# Josh wonders wiether the site will hremmber his list.  Then he sees that the site has generated a uinique URL for him
-# -- there is some explanator text to that effect.
+        # When he hits enter, the page updates, and now the page lists
+        # 1: Buy peacock feathers" as an item in a to-do list
 
-# He visits that URL - his to-do list is still hthere
+        # There is still a text box inviting her to add another item.  She enters
+        # "Use peacock feathers to make a fly:" (JOsh is very methodical)
 
-#  Satisfied, he goes back to sleep
+        # The page updates again, and now shows both items on his list
 
-browser.quit()
+        # Josh wonders whether the site will remember his list.  Then he sees that the site has generated a unique URL for him
+        # -- there is some explanator text to that effect.
 
+        # He visits that URL - his to-do list is still there
+
+        #  Satisfied, he goes back to sleep
+
+        browser.quit()
+
+if __name__ == '__main__':
+    unittest.main(warnings='ignore')
 # TODO find the reason this unit-test fails
+
+
+#  NOTES
+# from selenium import webdriver
+# browser=webdriver.Firefox()
+# browser.get('http://localhost:8000')
+# browser.get('http://www.google.ca')
+# browser.quit()
+
