@@ -20,24 +20,6 @@ from django.urls import path
 from lists import views
 
 
-# from . import views
-# from . import superlists.lists.views
-# import superlists.lists.views
-
-
-
-# import views
-
-
-
-#
-# import importlib
-# importlib.import_module('superlists.lists.views')
-
-
-# import superlists
-# superlists.views
-
 import os
 print(os.path.abspath(views.__file__))
 
@@ -45,12 +27,3 @@ urlpatterns = [
       url(r'^$', views.home_page, name='home')
 ]
 
-# path('admin/', admin.site.urls),
-# path(r'/', views.home_page, name='home'),
-# path('', views.home_page, name='home'),
-
-
-#
-# urlpatterns = [
-#     path('', views.index, name='index'),
-# ]
